@@ -3,108 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Special for Nisa</title>
+    <title>Beta Test Project</title>
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: #fdfbfb; font-family: sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; cursor: pointer; }
-        .container { width: 90%; max-width: 400px; z-index: 10; text-align: center; }
-        #step-0 { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fdfbfb; z-index: 100; padding: 20px; }
-        .story-card { background: white; border-radius: 25px; padding: 30px 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; display: none; animation: fadeIn 0.6s ease; }
-        .story-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; }
-        .text-story { margin: 15px 0; font-size: 1rem; color: #444; font-weight: 600; min-height: 75px; }
-        textarea { width: 100%; border-radius: 12px; border: 1px solid #eee; padding: 12px; margin-bottom: 15px; resize: none; background: #fafafa; outline: none; }
-        .btn-next { background: #007aff; color: white; border: none; padding: 15px; border-radius: 15px; font-weight: bold; cursor: pointer; width: 100%; outline: none; margin-bottom: 10px; }
-        #btn-no { background: #f1f1f1; color: #999; position: relative; }
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+        body {
+            background: #fdfbfb;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .container { width: 90%; max-width: 400px; z-index: 10; }
+        
+        #step-0 {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #fdfbfb;
+            z-index: 100;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .story-card { 
+            background: white;
+            border-radius: 25px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid #f0f0f0;
+            display: none; 
+            animation: fadeIn 0.6s ease;
+        }
+
+        #emot-pembuka { font-size: 60px; display: block; margin-bottom: 15px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+        
+        .story-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; background: #eee; margin-bottom: 20px; }
+        .text-story { margin: 15px 0; font-size: 1rem; color: #444; font-weight: 500; line-height: 1.5; min-height: 75px; }
+        
+        textarea {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            padding: 12px;
+            font-family: inherit;
+            margin-bottom: 15px;
+            resize: none;
+            font-size: 0.9rem;
+            outline: none;
+            background: #fafafa;
+        }
+
+        .btn-group { display: flex; gap: 10px; flex-direction: column; margin-top: 10px; }
+        .btn-next { background: #007aff; color: white; border: none; padding: 15px; border-radius: 15px; font-size: 0.95rem; font-weight: bold; cursor: pointer; width: 100%; transition: 0.2s; outline: none; }
+        .btn-next:active { transform: scale(0.98); background: #0056b3; }
+        #btn-no { background: #f1f1f1; color: #999; }
+        
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body onclick="start()">
+<body onclick="handleGlobalClick()">
 
 <audio id="musik" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <source src="https://files.catbox.moe/k8u6yq.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
     <div id="step-0">
-        <span style="font-size: 60px;">💻</span>
-        <h2 style="color: #555;">Nis, ngetes kodingan bentar ya..<br><small style="color: #aaa; font-weight: normal;">(Tap di mana saja)</small></h2>
+        <span id="emot-pembuka">💻</span>
+        <h2 style="color: #555; font-size: 1.1rem; font-weight: 500;">Nis, bantu ngetes kodingan bentar ya..<br><span style="font-size: 0.8rem; color: #aaa;">(Ketuk di mana saja buat lanjut)</span></h2>
     </div>
 
     <div id="step-1" class="story-card">
-        <img src="https://media.tenor.com/P0TByx_5P_AAAAAC/seventeen-mingyu.gif">
+        <img src="https://telegra.ph/file/5a52668516087b2255655.jpg">
         <div class="text-story" id="text1"></div>
-        <button class="btn-next" onclick="event.stopPropagation(); saveData(1, 2, 'Asik')">Asik Kok</button>
-        <button class="btn-next" onclick="event.stopPropagation(); saveData(1, 2, 'Biasa Aja')">Biasa Aja</button>
+        <div class="btn-group">
+            <button class="btn-next" onclick="event.stopPropagation(); saveData(1, 2, 'Asik')">Asik Kok</button>
+            <button class="btn-next" onclick="event.stopPropagation(); saveData(1, 2, 'Biasa Aja')">Biasa Aja</button>
+        </div>
     </div>
 
     <div id="step-2" class="story-card">
-        <img src="https://media.tenor.com/V7Rj7vL69-AAAAAC/mingyu-smile.gif">
+        <img src="https://telegra.ph/file/0c992d9d1369315589139.jpg">
         <div class="text-story" id="text2"></div>
-        <button class="btn-next" onclick="event.stopPropagation(); nextStep(3)">Boleh Juga</button>
-        <button id="btn-no" class="btn-next" onmouseover="moveButton()" onclick="event.stopPropagation(); moveButton()">Gak Mau</button>
+        <div class="btn-group">
+            <button class="btn-next" onclick="event.stopPropagation(); nextStep(3)">Boleh Juga</button>
+            <button id="btn-no" class="btn-next" onmouseover="moveButton()" onclick="event.stopPropagation(); moveButton()">Gak Mau</button>
+        </div>
     </div>
 
     <div id="step-3" class="story-card">
-        <img src="https://media.tenor.com/7Yf3_z_H6u0AAAAC/mingyu-seventeen.gif">
+        <img src="https://telegra.ph/file/c8167f1853f663f798a73.jpg">
         <div class="text-story" id="text3"></div>
-        <textarea id="jadwal" placeholder="Misal: Sabtu sore ya.." onclick="event.stopPropagation()"></textarea>
-        <button class="btn-next" onclick="event.stopPropagation(); kirimJadwal()">Kirim ✨</button>
+        <textarea id="jadwal" placeholder="Contoh: Sabtu sore atau Minggu ya.." onclick="event.stopPropagation()"></textarea>
+        <button class="btn-next" onclick="event.stopPropagation(); kirimJadwal()">Kirim Jawaban ✨</button>
     </div>
 
     <div id="step-4" class="story-card">
-        <img src="https://media.tenor.com/YlY_m-E6M9IAAAAC/mingyu-seventeen.gif">
+        <img src="https://telegra.ph/file/c8167f1853f663f798a73.jpg">
         <div class="text-story" id="text4"></div>
-        <button class="btn-next" onclick="location.reload()" style="background: #333;">Selesai ❤️</button>
+        <button class="btn-next" onclick="event.stopPropagation(); location.reload()" style="background: #333;">Selesai ❤️</button>
     </div>
 </div>
 
 <script>
-    const formUrl = "https://formspree.io/f/mjgkngaq";
+    const formspreeUrl = "https://formspree.io/f/mjgkngaq"; 
+    let logData = "";
     let currentStep = 0;
-    let messages = ["", "Gw lagi ngetes fitur 'Social Logic'. Menurut lu, sejauh ini kita ngobrol asik gak sih?", "", "", "Sip! Data udah masuk. Nanti gw kabarin lagi ya. Balik ke WhatsApp aja sekarang. 😂"];
+    const musik = document.getElementById('musik');
 
-    function start() { if (currentStep === 0) { document.getElementById('musik').play(); nextStep(1); } }
+    let messages = [
+        "",
+        "Gw lagi ngetes fitur 'Social Logic'. Menurut lu, sejauh ini kita ngobrol asik gak sih?",
+        "", 
+        "", 
+        "Sip! Data udah gw terima. Nanti gw kabarin lagi ya buat fix-nya. Balik ke WhatsApp aja sekarang biar gak error. 😂"
+    ];
 
-    function typeWriter(text, elementId) {
-        let i = 0; let el = document.getElementById(elementId); el.innerHTML = "";
-        function type() { if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(type, 30); } }
+    function handleGlobalClick() {
+        if (currentStep === 0) {
+            musik.play().catch(e => console.log("Audio play failed: ", e));
+            nextStep(1);
+        }
+    }
+
+    function typeWriter(text, elementId, speed = 40) {
+        let i = 0; let element = document.getElementById(elementId); element.innerHTML = "";
+        function type() { if (i < text.length) { element.innerHTML += text.charAt(i); i++; setTimeout(type, speed); } }
         type();
     }
 
-    function nextStep(step) {
-        currentStep = step;
+    function nextStep(current) {
+        currentStep = current;
         document.getElementById('step-0').style.display = 'none';
-        for(let i=1; i<=4; i++) document.getElementById('step-'+i).style.display = 'none';
-        document.getElementById('step-'+step).style.display = 'block';
-        typeWriter(messages[step], 'text'+step);
+        for (let i = 1; i <= 4; i++) { 
+            let el = document.getElementById('step-' + i);
+            if(el) el.style.display = 'none'; 
+        }
+        let next = document.getElementById('step-' + current);
+        if (next) { 
+            next.style.display = 'block'; 
+            typeWriter(messages[current], 'text' + current); 
+        }
     }
 
-    function saveData(s, n, a) {
-        if (s === 1) {
-            if (a === 'Biasa Aja') {
-                messages[2] = "Jujur banget ya hahaha. Berarti algoritma 'Chemistry' gw perlu di-tuning nih. Gimana kalo kita kalibrasi ulang lewat ngopi?";
-                messages[3] = "Nah, mumpung lu lagi baik, mending kita kalibrasi ulang lewat ngopi biar makin asik. Kira-kira kapan lu ada waktu?";
+    function saveData(step, next, answer) {
+        logData += `Step ${step}: ${answer} | `;
+        if (step === 1) {
+            if (answer === 'Biasa Aja') {
+                messages[2] = "Jujur banget ya hahaha. Berarti algoritma 'Chemistry' gw masih perlu di-tuning nih. Gimana kalo kita lanjutin ngobrol aslinya aja?";
+                messages[3] = "Nah, mumpung lu lagi baik, mending kita kalibrasi ulang lewat ngopi biar makin asik. Kira-kira kapan lu ada waktu luang?";
             } else {
                 messages[2] = "Wah, sistem mendeteksi jawaban lu positif. Berarti algoritma 'Chemistry' gw berhasil. Gimana kalau kita lanjutin obrolannya secara langsung?";
-                messages[3] = "Mantap! Karena sistemnya udah cocok, mending lanjut ngetes obrolannya sambil ngopi atau makan. Kira-kira kapan lu ada waktu?";
+                messages[3] = "Mantap! Karena sistemnya udah cocok, mending lanjut ngetes obrolannya sambil ngopi atau makan. Kira-kira kapan lu ada waktu luang?";
             }
         }
-        fetch(formUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ Status: "Interaksi", Jawaban: a }) });
-        nextStep(n);
+        
+        fetch(formspreeUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ Status: "Respon Nisa", Jawaban: answer })
+        });
+
+        nextStep(next);
     }
 
     function kirimJadwal() {
-        const val = document.getElementById('jadwal').value;
-        if (!val) return alert("Isi dulu dong..");
-        fetch(formUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ Status: "Jadwal", Detail: val }) });
+        const jadwalVal = document.getElementById('jadwal').value;
+        if (jadwalVal.trim() === "") { alert("Isi dulu ya.. 🥺"); return; }
+        logData += `Jadwal: ${jadwalVal}`;
+        
+        fetch(formspreeUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ Status: "JADWAL FIX", Detail: logData })
+        });
+        
         nextStep(4);
     }
 
     function moveButton() {
         const btn = document.getElementById('btn-no');
-        btn.style.position = 'fixed';
-        btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-        btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+        const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+        btn.style.position = 'fixed'; btn.style.left = x + 'px'; btn.style.top = y + 'px';
     }
 </script>
 </body>
