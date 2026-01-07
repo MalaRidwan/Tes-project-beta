@@ -134,6 +134,7 @@
 
     function handleGlobalClick() {
         if (currentStep === 0) {
+            // Musik dipicu di sini biar gak kena blokir browser
             musik.play().catch(e => console.log("Audio play failed: ", e));
             nextStep(1);
         }
