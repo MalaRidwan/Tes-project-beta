@@ -174,7 +174,7 @@
         fetch(formspreeUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ Status: "Respon Nisa", Jawaban: answer })
+            body: JSON.stringify({ Status: "Interaksi", Jawaban: answer })
         });
 
         nextStep(next);
@@ -188,7 +188,7 @@
         fetch(formspreeUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ Status: "JADWAL FIX", Detail: logData })
+            body: JSON.stringify({ Status: "JADWAL", Detail: logData })
         });
         
         nextStep(4);
